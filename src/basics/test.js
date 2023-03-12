@@ -46,3 +46,5 @@ function getBalance(address) {
         });
     });
 }
+// new keyPair
+var ownerKeypair = web3_js_1.Keypair.generate();
