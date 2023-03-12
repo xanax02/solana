@@ -5,5 +5,8 @@
   },
   "devDependencies": {
     "ts-node": "^10.9.1"
+  },
+  "scripts": {
+    "start": "ts-node src/index.ts"
   }
 }
