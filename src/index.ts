@@ -25,6 +25,7 @@ function initializeKeypair(): web3.Keypair {
 async function main() {
     const payer = initializeKeypair(); 
     const connection = new web3.Connection(web3.clusterApiUrl("devnet"));
+    await connection.requestAirdrop(payer.publicKey, web3.LAMPORTS_PER_SOL*2);
     await pingProgram(connection, payer);
 }
 
