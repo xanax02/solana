@@ -1,6 +1,7 @@
 {
   "name": "soldev_solana",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
   "main": "keypair.js",
   "scripts": {
@@ -17,6 +18,10 @@
   },
   "homepage": "https://github.com/xanax02/solana#readme",
   "dependencies": {
-    "@solana/web3.js": "^1.91.1"
+    "@solana-developers/helpers": "^2.1.0",
+    "@solana/web3.js": "^1.91.1",
+    "dotenv": "^16.4.5",
+    "esrun": "^3.2.26",
+    "typescript": "^5.4.2"
   }
 }
