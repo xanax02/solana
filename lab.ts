@@ -7,7 +7,7 @@ const payer = getKeypairFromEnvironment("SECRET_KEY");
 const connection = new Connection(clusterApiUrl("devnet"));
 
 // 2. getting sols if needed
-const newBalance = await airdropIfRequired(connection, payer.publicKey, 1*LAMPORTS_PER_SOL, 0.5*LAMPORTS_PER_SOL);
+await airdropIfRequired(connection, payer.publicKey, 1*LAMPORTS_PER_SOL, 0.5*LAMPORTS_PER_SOL);
 
 // ADDRESSES
 const PING_PROGRAM_ADDRESS = new PublicKey("ChT1B39WKLS8qUrkLvFDXMhEJ4F1XZzwUNHUt4AU9aVa");
