@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react'
-import { clusterApiUrl } from "@solana/web3.js";
+import ConnectionProvider from "@/components/providers/ConnectionProvider";
+import WalletProvider from "@/components/providers/WalletProvider";;
 
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { useMemo } from "react";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -13,18 +12,14 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({children,}: Readonly<{children: React.ReactNode}>) {
-  
-  const endpoint = clusterApiUrl("devnet");
-  const wallets = useMemo(() => [], [])
-
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ConnectionProvider endpoint={endpoint}>
-          <WalletProvider wallets={wallets}>
-          {children}
-          </WalletProvider>
-        </ConnectionProvider>
+          <ConnectionProvider>
+            <WalletProvider>
+            {children}
+            </WalletProvider>
+          </ConnectionProvider>
       </body>
     </html>
   );
