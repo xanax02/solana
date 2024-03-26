@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import ConnectionProvider from "@/components/providers/ConnectionProvider";
-import WalletProvider from "@/components/providers/WalletProvider";;
+import WalletProvider from "@/components/providers/WalletProvider";
 
 import { Inter } from "next/font/google";
 import "./globals.css";
+import WalletModalProvider from "@/components/providers/WalletModalProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -17,7 +18,9 @@ export default function RootLayout({children,}: Readonly<{children: React.ReactN
       <body className={inter.className}>
           <ConnectionProvider>
             <WalletProvider>
-            {children}
+              <WalletModalProvider>
+                {children}
+              </WalletModalProvider>
             </WalletProvider>
           </ConnectionProvider>
       </body>
