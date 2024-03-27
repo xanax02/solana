@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Appbar from "@/components/appbar/Appbar";
+import Root from "@/components/root/Root";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,8 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} bg-[#282c34] text-white flex flex-col`}>
-        <header className="h-[90px]"><Appbar /></header>
-        <main className="flex-1">{children}</main>
+        <Root children={children}/>
       </body>
     </html>
   );
