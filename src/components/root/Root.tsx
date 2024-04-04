@@ -7,8 +7,8 @@ import WalletContextProviders from "../walletContextProviders/WalletContextProvi
 export default function({children}: {children: ReactNode}) {
     return (
         <WalletContextProviders>
-            <header className="h-[90px]"><Appbar /></header>
-            <main className="flex-1">{children}</main>
+            <header className="h-[90px] fixed top-0 right-0 left-0"><Appbar /></header>
+            <main className="mt-[90px] ">{children}</main>
         </WalletContextProviders>
     )
 }
