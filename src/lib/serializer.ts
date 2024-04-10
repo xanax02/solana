@@ -5,6 +5,12 @@ export class Movie {
   rating: number;
   description: string;
 
+  constructor(title: string, rating: number, description: string) {
+    this.title = title;
+    this.rating = rating;
+    this.description = description;
+  }
+
   intructionSchema = borsh.struct([
     borsh.u8("varient"),
     borsh.str("title"),
