@@ -34,6 +34,7 @@ export default function () {
       new PublicKey(MOVIE_REVIEW_PROGRAM_ID)
     );
 
+    //instructions
     const instructions = new TransactionInstruction({
       keys: [
         {
@@ -55,9 +56,22 @@ export default function () {
       data: instructionDatabuffer,
       programId: new PublicKey(MOVIE_REVIEW_PROGRAM_ID),
     });
+
+    //adding instruction to transaction
+    transaction.add(instructions);
+
+    //sending and confirming instruction
+    try {
+      const txid = await sendTransaction(transaction, connection);
+      console.log(
+        `Transaction submitted: https://explorer.solana.com/tx/${txid}?cluster=devnet`
+      );
+    } catch (err) {
+      console.log(err);
+    }
   };
 
-  const handleSubmit = (evnet: any) => {
+  const handleSubmit = (event: any) => {
     event?.preventDefault();
     if (title.trim().length === 0 || description.trim().length === 0) {
       alert("Plese provide valid data");
