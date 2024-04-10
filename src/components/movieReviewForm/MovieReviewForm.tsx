@@ -1,3 +1,5 @@
+"use client";
+
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import {
   PublicKey,
