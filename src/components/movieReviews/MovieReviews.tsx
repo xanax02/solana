@@ -14,7 +14,17 @@ export default function () {
       const accounts = await connection.getProgramAccounts(
         new web3.PublicKey(MOVIE_REVIEW_PROGRAM_ID)
       );
+      const movies: Movie[] = accounts.map(({ account }) => {
+        const movie = Movie.deserialize(account.data);
+        if (movie != null) return movie;
+        else {
+          throw new Error("NULL MOVIE");
+        }
+      });
+      setMovies(movies);
     };
+
+    fetchMovies();
   }, []);
 
   return (
