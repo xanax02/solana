@@ -32,3 +32,18 @@ accounts.map(({ pubkey, account }) => {
   console.log("Account", pubkey);
   console.log("DATA buffer", account.data);
 });
+
+////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////
+
+// DATA DESERIALIZATION
+import * as borsh from "@coral-xyz/borsh";
+
+const borshAccountSchema = borsh.struct([
+  borsh.bool("initialized"),
+  borsh.u16("playerId"),
+  borsh.str("name"),
+]);
+
+const buffer = Buffer.from("THIS IS PLAYER BUFFRE");
+const { playerId, name } = borshAccountSchema.decode(buffer);
