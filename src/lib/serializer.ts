@@ -23,4 +23,24 @@ export class Movie {
     this.intructionSchema.encode({ ...this, varient: 0 }, buffer);
     return buffer.slice(0, this.intructionSchema.getSpan(buffer));
   }
+
+  borshAccountSchema = borsh.struct([
+    borsh.bool("initialized"),
+    borsh.u8("rating"),
+    borsh.str("title"),
+    borsh.str("description"),
+  ]);
+
+  deserialize(buffer?: Buffer): Movie | null {
+    if (!buffer) return null;
+
+    try {
+      const { title, rating, description } =
+        this.borshAccountSchema.decode(buffer);
+      return new Movie(title, rating, description);
+    } catch (erro) {
+      console.log(erro);
+      return null;
+    }
+  }
 }
