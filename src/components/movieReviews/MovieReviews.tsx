@@ -1,4 +1,22 @@
+import { useEffect, useState } from "react";
+import { useConnection } from "@solana/wallet-adapter-react";
+import * as web3 from "@solana/web3.js";
+import { Movie } from "@/lib/serializer";
+
+const MOVIE_REVIEW_PROGRAM_ID = "CenYq6bDRB7p73EjsPEpiYN7uveyPUTdXkDkgUduboaN";
+
 export default function () {
+  const { connection } = useConnection();
+  const [movies, setMovies] = useState<Movie[]>([]);
+
+  useEffect(() => {
+    const fetchMovies = async () => {
+      const accounts = await connection.getProgramAccounts(
+        new web3.PublicKey(MOVIE_REVIEW_PROGRAM_ID)
+      );
+    };
+  }, []);
+
   return (
     <div className="mt-4 mb-1">
       <p>Existing Reviews</p>

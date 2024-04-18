@@ -24,14 +24,14 @@ export class Movie {
     return buffer.slice(0, this.intructionSchema.getSpan(buffer));
   }
 
-  borshAccountSchema = borsh.struct([
+  static borshAccountSchema = borsh.struct([
     borsh.bool("initialized"),
     borsh.u8("rating"),
     borsh.str("title"),
     borsh.str("description"),
   ]);
 
-  deserialize(buffer?: Buffer): Movie | null {
+  static deserialize(buffer?: Buffer): Movie | null {
     if (!buffer) return null;
 
     try {
