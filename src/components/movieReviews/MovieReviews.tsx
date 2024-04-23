@@ -32,6 +32,25 @@ export default function () {
           </div>
         );
       })}
+      <div className="flex justify-center gap-2 mb-8">
+        {page > 1 && (
+          <button
+            className="cursor-pointer"
+            onClick={() => setPage((page) => page - 1)}
+          >
+            -
+          </button>
+        )}
+        <p>{page}</p>
+        {MovieCoordinator.accounts.length > page * 2 && (
+          <button
+            className="cursor-pointer"
+            onClick={() => setPage((page) => page + 1)}
+          >
+            +
+          </button>
+        )}
+      </div>
     </div>
   );
 }
