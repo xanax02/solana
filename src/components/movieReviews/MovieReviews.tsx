@@ -4,31 +4,18 @@ import { useEffect, useState } from "react";
 import { useConnection } from "@solana/wallet-adapter-react";
 import * as web3 from "@solana/web3.js";
 import { Movie } from "@/lib/serializer";
+import { MovieCoordinator } from "@/lib/movieCoord";
 
 const MOVIE_REVIEW_PROGRAM_ID = "CenYq6bDRB7p73EjsPEpiYN7uveyPUTdXkDkgUduboaN";
 
 export default function () {
   const { connection } = useConnection();
   const [movies, setMovies] = useState<Movie[]>([]);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
-    const fetchMovies = async () => {
-      const accounts = await connection.getProgramAccounts(
-        new web3.PublicKey(MOVIE_REVIEW_PROGRAM_ID)
-      );
-      const movies: Movie[] = accounts.map(({ account }) => {
-        const movie = Movie.deserialize(account.data);
-        if (movie != null) return movie;
-        else {
-          throw new Error("NULL MOVIE");
-        }
-      });
-      setMovies(movies);
-      console.log(movies);
-    };
-
-    fetchMovies();
-  }, []);
+    MovieCoordinator.fetchPage(connection, page, 10).then(setMovies);
+  }, [page]);
 
   return (
     <div className="mt-4 mb-1">

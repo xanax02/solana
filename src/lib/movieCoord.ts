@@ -5,16 +5,16 @@ const MOVIE_REVIEW_PROGRAM_ID = "CenYq6bDRB7p73EjsPEpiYN7uveyPUTdXkDkgUduboaN";
 const program_id = new PublicKey(MOVIE_REVIEW_PROGRAM_ID);
 
 export class MovieCoordinator {
-  accounts: PublicKey[] = [];
+  static accounts: PublicKey[] = [];
 
-  async prefetchAccounts(connection: Connection) {
+  static async prefetchAccounts(connection: Connection) {
     const accounts = await connection.getProgramAccounts(program_id, {
       dataSlice: { offset: 0, length: 0 },
     });
     this.accounts = accounts.map((account) => account.pubkey);
   }
 
-  async fetchPage(
+  static async fetchPage(
     connection: Connection,
     page: number,
     perPage: number
