@@ -10,6 +10,7 @@ export class MovieCoordinator {
 
   // fetches all the accounts from chain with pubkey and limited account data
   static async prefetchAccounts(connection: Connection, search: string) {
+    console.log(search);
     const accounts = await connection.getProgramAccounts(program_id, {
       // for having title for sorting
       dataSlice: { offset: 2, length: 18 },
@@ -53,9 +54,10 @@ export class MovieCoordinator {
     connection: Connection,
     page: number,
     perPage: number,
-    search: string
+    search: string,
+    reaload: boolean
   ): Promise<Movie[]> {
-    if (this.accounts.length === 0) {
+    if (this.accounts.length === 0 || reaload) {
       await this.prefetchAccounts(connection, search);
     }
 

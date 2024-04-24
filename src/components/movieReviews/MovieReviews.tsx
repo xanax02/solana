@@ -14,12 +14,35 @@ export default function () {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    MovieCoordinator.fetchPage(connection, page, 10, search).then(setMovies);
+    try {
+      console.log("RUNNING");
+      MovieCoordinator.fetchPage(
+        connection,
+        page,
+        10,
+        search,
+        search != ""
+      ).then(setMovies);
+    } catch (err) {
+      setMovies([]);
+      console.log(err);
+    }
   }, [page, search]);
 
   return (
     <div className="mt-4 mb-1">
       <p>Existing Reviews</p>
+
+      <div className="mb-2">
+        <input
+          className="rounded-md focus:outline-none py-1 bg-transparent border-[1px] border-white px-2"
+          type="text"
+          value={search}
+          onChange={(event) => {
+            setSearch(event?.target.value);
+          }}
+        />
+      </div>
 
       {movies.map((movie, index) => {
         return (
