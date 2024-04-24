@@ -20,7 +20,7 @@ export class MovieCoordinator {
           : [
               {
                 memcmp: {
-                  offset: 2,
+                  offset: 6,
                   bytes: base58.encode(Buffer.from(search)),
                 },
               },
