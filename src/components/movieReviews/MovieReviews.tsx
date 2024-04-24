@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { useConnection } from "@solana/wallet-adapter-react";
-import * as web3 from "@solana/web3.js";
 import { Movie } from "@/lib/serializer";
 import { MovieCoordinator } from "@/lib/movieCoord";
 
@@ -12,10 +11,11 @@ export default function () {
   const { connection } = useConnection();
   const [movies, setMovies] = useState<Movie[]>([]);
   const [page, setPage] = useState(1);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
-    MovieCoordinator.fetchPage(connection, page, 10).then(setMovies);
-  }, [page]);
+    MovieCoordinator.fetchPage(connection, page, 10, search).then(setMovies);
+  }, [page, search]);
 
   return (
     <div className="mt-4 mb-1">
